@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function offers() {
+export default function Offers() {
   return (
-    <div>offers</div>
+    <div>O</div>
   )
 }
