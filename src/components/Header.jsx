@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 
@@ -8,11 +8,14 @@ export default function Header() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // console.log(location.pathname);
+    // console.log(location);
+
 
     function pathMatchRoute(route) {
         if (route === location.pathname) {
             return true;
+
+
         }
     }
 
@@ -24,18 +27,22 @@ export default function Header() {
                     <img src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg" alt="logo" className='h-5 cursor-pointer' onClick={() => navigate("/")} />
                 </div>
                 <div>
-                    <ul className='flex space-x-10'>
+                    <ul className="flex space-x-10">
+
+
+
+
                         <li
                             className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/") && "text-black border-b-red-500"
                                 }`}
-                                onClick={() => navigate("/")}
+                            onClick={() => navigate("/")}
                         >
                             Home
                         </li>
                         <li
                             className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/offers") && "text-black border-b-red-500"
                                 }`}
-                                onClick={() => navigate("/offers")}
+                            onClick={() => navigate("/offers")}
 
                         >
                             Offers
@@ -43,9 +50,9 @@ export default function Header() {
 
 
 
-                        <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute("/sign-in") && "text-black border-b-red-500"}`}
-                        
-                        onClick={() => navigate("/sign-in")}
+                        <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMatchRoute('/sign-in') && 'text-black border-b-red-500'}`}
+
+                            onClick={() => navigate("/sign-in")}
                         >Sign In</li>
                     </ul>
                 </div>
