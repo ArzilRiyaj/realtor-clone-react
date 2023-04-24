@@ -1,10 +1,19 @@
-import {collection, getDoc, getDocs, limit, orderBy,query, where,} from "firebase/firestore";
+import React from 'react'
 import { useEffect } from "react";
 import { useState } from "react";
+import Slider from '../components/Slider';
+import {
+  collection,
+  getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "../firebase";
 import { Link } from "react-router-dom";
 import ListingItem from "../components/ListingItem";
-import Slider from "../components/Slider";
-import { db } from "../firebase";
 
 export default function Home() {
   // Offers
@@ -31,12 +40,15 @@ export default function Home() {
           });
         });
         setOfferListings(listings);
+        console.log(listings);
       } catch (error) {
         console.log(error);
       }
     }
     fetchListings();
-  }, []);
+  }, [])
+
+
   // Places for rent
   const [rentListings, setRentListings] = useState(null);
   useEffect(() => {
@@ -67,7 +79,12 @@ export default function Home() {
     }
     fetchListings();
   }, []);
-  // Places for rent
+
+
+  
+
+
+  // Places for sale
   const [saleListings, setSaleListings] = useState(null);
   useEffect(() => {
     async function fetchListings() {
@@ -97,11 +114,14 @@ export default function Home() {
     }
     fetchListings();
   }, []);
-  
+
   return (
     <div>
       <Slider />
+
+
       <div className="max-w-6xl mx-auto pt-4 space-y-6">
+
         {offerListings && offerListings.length > 0 && (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold">Recent offers</h2>
@@ -122,7 +142,9 @@ export default function Home() {
           </div>
         )}
 
-        {rentListings && rentListings.length > 0 && (
+
+
+{rentListings && rentListings.length > 0 && (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold">Places for rent</h2>
             <Link to="/category/rent">
@@ -141,7 +163,9 @@ export default function Home() {
             </ul>
           </div>
         )}
-        {saleListings && saleListings.length > 0 && (
+
+
+{saleListings && saleListings.length > 0 && (
           <div className="m-2 mb-6">
             <h2 className="px-3 text-2xl mt-6 font-semibold">Places for sale</h2>
             <Link to="/category/sale">
@@ -162,5 +186,6 @@ export default function Home() {
         )}
       </div>
     </div>
-  );
+
+  )
 }
